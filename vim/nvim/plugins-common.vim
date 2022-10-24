@@ -1,7 +1,7 @@
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc插件，提供lsp等功能
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " 多光标
-Plug 'chiel92/vim-autoformat' " 格式化
+"Plug 'chiel92/vim-autoformat' " 格式化
 Plug 'gcmt/wildfire.vim' " 回车按照层级选中
 Plug 'dbakker/vim-projectroot' " 自动进入项目根目录
 Plug 'tpope/vim-fugitive' " git封装
@@ -21,6 +21,8 @@ Plug 'vim-scripts/CursorLineCurrentWindow' " 高亮显示激活窗口的当前�
 Plug 'kabbamine/zeavim.vim' " zeal 文档
 Plug 'vim-scripts/EasyGrep' " 查找替换
 Plug 'christoomey/vim-tmux-navigator' " tmux pane跳转
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
 Plug 'benmills/vimux' " tmux 终端集成
 Plug 'junegunn/fzf' " fzf 模糊查找
 Plug 'junegunn/fzf.vim' " fzf 模糊查找
