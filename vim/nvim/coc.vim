@@ -67,6 +67,7 @@ nnoremap <silent><nowait> <space>ca  :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <space>ce  :<C-u>CocList extensions<cr>
 nnoremap <silent><nowait> <space>cx  :<C-u>CocList commands<cr>
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <F12> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -95,6 +96,7 @@ let g:coc_global_extensions = ['coc-json'
 			\, 'coc-tabnine'
 			\, 'coc-clang-format-style-options'
 			\, 'coc-fzf-preview'
+			\, 'coc-yaml'
 			\]
 
 

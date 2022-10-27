@@ -8,7 +8,7 @@ endfunction
 augroup autoRunGroup
 	autocmd!
 	autocmd BufLeave * stopinsert
-	"autocmd BufWritePre *.cpp,*.c,*.go,*.h,*.rs,*.json,*.yaml,dockerfile,makefile,CMakeLists.txt :Autoformat
+	" autocmd BufWritePre *.cpp,*.c,*.go,*.h,*.rs,*.json,*.yaml,dockerfile,makefile,CMakeLists.txt,*.py :Autoformat
 	autocmd InsertLeave,InsertEnter * :set relativenumber!
 	autocmd BufWritePost *vimrc :source ~/.vimrc
 	" autocmd BufEnter * :set nomodifiable
@@ -46,3 +46,6 @@ let &termencoding=&encoding
 set fencs=utf-8,ucs-bom,gb18030
 set mouse=a
 set timeoutlen=500
+
+set foldlevelstart=99
+set foldlevel=99

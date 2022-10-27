@@ -21,6 +21,15 @@ replace_config() {
 	echo "软链接 $old_config 到 $new_config"
 }
 
+config_alacritty() {
+	replace_config ~/.config/alacritty $(pwd)/alacritty
+	echo "alacritty 安装完成！"
+}
+
+config_polybar() {
+	replace_config ~/.config/polybar $(pwd)/polybar
+	echo "polybar 安装完成！"
+}
 
 config_vim(){
 
@@ -57,7 +66,7 @@ config_vim(){
 		vim -c PlugInstall -u ~/.vim/plugins.vim
 	fi
 
-	echo "[n]vim配置成功！有些软件包需要手动安装，目前已知的软件包包括：fzf ripgrep zsh bat universal-ctags gcut（直接建立cut的软链接） gsed（直接建立sed的软链接） lazygit fish gcc tmux"
+	echo "[n]vim配置成功！有些软件包需要手动安装，目前已知的软件包包括：fzf ripgrep zsh bat universal-ctags gcut（直接建立cut的软链接） gsed（直接建立sed的软链接） lazygit fish g++ tmux nodejs gcc xsel"
 }
 
 
