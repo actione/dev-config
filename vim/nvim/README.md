@@ -8,31 +8,31 @@
 
 1. init.vim
 
-    整个配置入口文件，引入了其他的.vim文件
+整个配置入口文件，引入了其他的.vim文件
 
 2. plugins.vim
 
-    插件配置文件，主要根据nvim和vim引入不同的插件安装文件：
+插件配置文件，主要根据nvim和vim引入不同的插件安装文件：
 
-    - plugins-common.vim
+- plugins-common.vim
 
-        vim和nvim都会生效的插件
+vim和nvim都会生效的插件
 
-    - plugins-vim.vim
+- plugins-vim.vim
 
-        仅会在vim生效的插件。
+仅会在vim生效的插件。
 
-    - plugins-nvim.vim
+- plugins-nvim.vim
 
-        仅会在nvim生效的插件
+仅会在nvim生效的插件
 
 3. coc.vim
 
-    coc的设置，引入了所有的coc目录下的.vim文件
+coc的设置，引入了所有的coc目录下的.vim文件
 
 4. coc-settings.json
 
-    coc相关插件的配置
+coc相关插件的配置
 
 ## 安装
 
@@ -138,5 +138,8 @@
 | normal | `<leader>`g   | 打开lazygit                              |
 | normal | `<leader>`//  | 增加doxygen函数注释                      |
 | normal | `<leader>`/// | 增加doxygen文件注释                      |
-
+| normal | `gcc`         | 快速注释                                 |
+| normal | `gt`          | 打开当前文件书签                         |
+| normal | `ff`          | format 当前选中的代码                    |
+| normal | `[p ]p`       | 文件buf切换                              |
 

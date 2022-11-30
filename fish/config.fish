@@ -18,4 +18,6 @@ set P4PORT p4proxy-zj:2006
 set P4CLIENT swrootlinux
 set P4ROOT /home/huaweil
 
+set PATH $PATH ~/go/bin
+
 source /home/huaweil/anaconda3/etc/fish/conf.d/conda.fish

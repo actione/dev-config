@@ -38,6 +38,7 @@ let g:config_table = [
 			\ [ 'luochen1990/rainbow','rainbow.vim', ['heavy']],
 			\ [ 'majutsushi/tagbar', 'tagbar.vim', ['heavy']],
 			\ [ 'inside/vim-search-pulse' ],
+            \ [ 'm42e/vim-gcov-marker', 'gcov-marker.vim'],
 			\ [ 'chiel92/vim-autoformat' ,'autoformat.vim'],
 			\ [ 'mg979/vim-visual-multi',  'visual-cursor.vim'],
 			\ [ 'dbakker/vim-projectroot' ,'project.vim'],
@@ -145,6 +146,7 @@ let g:config_table = [
 			\ [ 'tjdevries/gruvbuddy.nvim','',['nvim']],
 			\ [ 'ellisonleao/gruvbox.nvim','',['nvim']],
 			\ [ 'lalitmee/cobalt2.nvim','',['nvim']],
+            \ [ 'iamcco/markdown-preview.nvim', 'markdown.vim',['nvim']],
 			\ [ 'neoclide/coc.nvim',  'coc.vim', [], "{'branch': 'master', 'do': 'yarn install --registry '..g:npm_registry..' --frozen-lockfile'}"], 
 			\ [ '', 'zoom.vim'],
 			\ [ '', 'custom.vim' ],
@@ -202,6 +204,7 @@ endfunction
 
 " 插件的加载和插件的配置分开
 function! LoadPlugin()
+	set rtp +=~/.vim
 	let g:plug_url_format="https://ghproxy.com/https://github.com/%s"
 	call plug#begin()
 	let i = 0
