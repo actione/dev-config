@@ -35,27 +35,20 @@ config_vim(){
 
 	bak_config ~/.config/nvim
 	bak_config ~/.local/share/nvim/site
-	bak_config ~/.vim
-	bak_config ~/.vimrc
 
-	rm -rf ~/.config/nvim ~/.local/share/nvim/site ~/.vim ~/.vimrc
+	rm -rf ~/.config/nvim ~/.local/share/nvim/site
 
 	mkdir -p ~/.config
-	mkdir -p ~/.vim
 	mkdir -p ~/.local/share
 
 	replace_config ~/.config/nvim $(pwd)/vim/nvim
 
 	nvim --version 2>/dev/null
 	if [ $? -eq 0 ]; then
-		INSTALL_VIM=1 nvim
-	fi
-	vim --version 2>/dev/null
-	if [ $? -eq 0 ]; then
-		INSTALL_VIM=1 vim
+		nvim
 	fi
 
-	echo "[n]vim配置成功！"
+	echo "nvim配置成功！"
 }
 
 
@@ -75,12 +68,17 @@ config_tmux(){
 
 config_i3() {
 	replace_config ~/.config/i3 $(pwd)/i3
-	replace_config ~/.config/i3status $(pwd)/i3status
+	replace_config ~/.config/polybar $(pwd)/polybar
 	echo i3 配置成功!
 }
 
+config_kitty() {
+	replace_config ~/.config/kitty $(pwd)/kitty
+	echo kitty 配置成功!
+}
+
 config_konsole() {
-	replace_config ~/.local/share/konsole/skyfire.profile $(pwd)/skyfire.profile
+	replace_config ~/.local/share/konsole $(pwd)/konsole
 	echo konsole 配置成功！
 }
 
@@ -90,13 +88,22 @@ config_x() {
 }
 
 
-config_fonts() {
-	mkdir -p ~/.fonts
-	curr=`pwd`
-	cd ~/.fonts
-	unzip $curr/fonts.zip
-	sudo fc-cache -fv ~/.fonts
-	echo 字体安装成功！
+config_hx() {
+	replace_config ~/.config/helix/config.toml $(pwd)/helix/config.toml
+	echo hx 配置成功！
+}
+
+config_rime() {
+	replace_config ~/.config/fcitx5/rime/default.custom.yaml $(pwd)/rime/default.custom.yaml
+	replace_config ~/.config/fcitx5/rime/luna_pinyin_simp.custom.yaml $(pwd)/rime/luna_pinyin_simp.custom.yaml
+	replace_config ~/.config/fcitx5/rime/weasel.custom.yaml $(pwd)/rime/weasel.custom.yaml
+	replace_config ~/.config/fcitx5/rime/sogoupinyin.dict.yaml $(pwd)/rime/sogoupinyin.dict.yaml
+	echo "rime 配置完成"
+}
+
+config_ranger() {
+    replace_config ~/.config/ranger $(pwd)/ranger
+    echo "ranger 配置完成"
 }
 
 while test $# -gt 0
