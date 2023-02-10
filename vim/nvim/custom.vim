@@ -30,6 +30,7 @@ set relativenumber
 set cursorline cursorcolumn
 set smarttab
 set tabstop=4
+set expandtab
 set shiftwidth=4
 set softtabstop=4
 set nocompatible

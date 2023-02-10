@@ -1,3 +1,6 @@
+" let g:formatdef_my_custom_python = '"black -q ".(&textwidth ? "-l".&textwidth : "")." -"'
+" let g:formatters_python = ['my_custom_python']
+
 noremap ff :Autoformat<CR>
 augroup autoformat
 autocmd!

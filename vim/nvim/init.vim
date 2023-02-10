@@ -38,6 +38,7 @@ let g:config_table = [
 			\ [ 'luochen1990/rainbow','rainbow.vim', ['heavy']],
 			\ [ 'majutsushi/tagbar', 'tagbar.vim', ['heavy']],
 			\ [ 'inside/vim-search-pulse' ],
+            \ [ 'actione/vim-gcover' ],
             \ [ 'm42e/vim-gcov-marker', 'gcov-marker.vim'],
 			\ [ 'chiel92/vim-autoformat' ,'autoformat.vim'],
 			\ [ 'mg979/vim-visual-multi',  'visual-cursor.vim'],
