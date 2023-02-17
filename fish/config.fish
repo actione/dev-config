@@ -18,6 +18,7 @@ set P4USER huaweil
 set P4PORT p4proxy-zj:2006
 set P4CLIENT swrootlinux
 set P4ROOT /home/huaweil
+set VECTOR_LICENSE_FILE 1683@indc-lic-01:1787@sc-lic-25
 
 set PATH $PATH ~/go/bin
 

@@ -4,7 +4,7 @@ let mapleader=" " "映射leader键为空格
 " 启用轻量化 vim，禁止加载一些重量级插件（比如treesitter），用于打开大文件
 let g:light_vim = index(keys(environ()), "LIGHT_VIM") != -1
 let g:home_dir = environ()['HOME']
-let g:install_vim = !filereadable(g:home_dir.."/.local/share/nvim/site/autoload/plug.vim") || !filereadable(g:home_dir.."/.local/share/nvim/site/autoload/plug.vim")
+let g:install_vim = !filereadable(g:home_dir.."/.local/share/nvim/site/autoload/plug.vim")
 " 使用淘宝镜像加速coc安装
 let g:npm_registry = 'https://registry.npm.taobao.org'
 let g:load_flags = []
@@ -131,7 +131,7 @@ let g:config_table = [
             \ [ 'ellisonleao/gruvbox.nvim'],
             \ [ 'lalitmee/cobalt2.nvim'],
             \ [ 'vim-scripts/scratch.vim'],
-            \ [ 'Pocco81/auto-save.nvim', 'auto-save.vim'], 
+            \ [ 'Pocco81/auto-save.nvim', 'auto-save.vim'],
             \ [ 'ludovicchabant/vim-gutentags', 'ctags.vim'],
             \ [ 'preservim/nerdcommenter', 'nerdcommenter.vim'],
             \ [ 'neoclide/coc.nvim', 'coc.vim', [], "{'branch': 'master', 'do': 'npm install --registry '..g:npm_registry..' --frozen-lockfile'}"],
@@ -209,7 +209,7 @@ endfunction
 
 " 插件的加载和插件的配置分开
 function! LoadPlugin()
-    set rtp +=~/.vim
+    " set rtp +=~/.vim
     let g:plug_url_format="https://ghproxy.com/https://github.com/%s"
     let plug_install = 0
     call plug#begin()

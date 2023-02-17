@@ -46,6 +46,7 @@ config_vim(){
 	nvim --version 2>/dev/null
 	if [ $? -eq 0 ]; then
 		nvim
+        echo "启动nvim配置"
 	fi
 
 	echo "nvim配置成功！"

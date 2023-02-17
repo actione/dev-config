@@ -4,7 +4,7 @@
 noremap ff :Autoformat<CR>
 augroup autoformat
 autocmd!
- autocmd BufWritePre *.go,*.rs,*.json,*.yaml,dockerfile,*.py :Autoformat
+ autocmd BufWritePre *.go,*.rs,*.json,*.yaml,dockerfile :Autoformat
 " autocmd BufWritePre *.cpp,*.c,*.go,*.h,*.rs,*.json,*.yaml,dockerfile,makefile,CMakeLists.txt,*.py :Autoformat
 "=======
 "let g:auto_format_flag = 1
