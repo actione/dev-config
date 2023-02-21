@@ -12,6 +12,7 @@ let g:deps_check = [
             \ ['fzf','fzf --version'],
             \ ['lazygit','lazygit --version'],
             \ ['ripgrep','rg --version'],
+            \ ['fd', 'fd --version'],
             \ ['universal-ctags', 'ctags --version'],
             \ ['g++', 'g++ --version'],
             \ ['nodejs', 'node --version'],
@@ -133,6 +134,7 @@ let g:config_table = [
             \ [ 'vim-scripts/scratch.vim'],
             \ [ 'Pocco81/auto-save.nvim', 'auto-save.vim'],
             \ [ 'ludovicchabant/vim-gutentags', 'ctags.vim'],
+            \ [ 'puremourning/vimspector', 'vimspector.vim'],
             \ [ 'preservim/nerdcommenter', 'nerdcommenter.vim'],
             \ [ 'neoclide/coc.nvim', 'coc.vim', [], "{'branch': 'master', 'do': 'npm install --registry '..g:npm_registry..' --frozen-lockfile'}"],
             \ [ 'nvim-lua/plenary.nvim'],
@@ -155,7 +157,6 @@ let g:config_table = [
             \ [ 'yaocccc/nvim-hlchunk'],
             \ [ 'lukas-reineke/indent-blankline.nvim', 'indent-blankline.vim'],
             \ [ 'akinsho/toggleterm.nvim', 'toggleterm.vim'],
-            \ [ '', 'zoom.vim'],
             \ [ '', 'custom.vim' ],
             \ [ '', 'keybinding.vim'],
             \ [ '', 'colorscheme.vim' ],
@@ -199,7 +200,7 @@ function! GetLoadFlags()
         if len(config) > 2
             let properties = config[2]
         endif
-        if (g:light_vim == 0 || index(properties, "heavy") == -1) 
+        if (g:light_vim == 0 || index(properties, "heavy") == -1)
             let g:load_flags = add(g:load_flags, 1)
         else
             let g:load_flags = add(g:load_flags, 0)
@@ -213,8 +214,8 @@ function! LoadPlugin()
     let g:plug_url_format="https://ghproxy.com/https://github.com/%s"
     let plug_install = 0
     call plug#begin()
-    let i = 0
-    for config in g:config_table
+    for i in range(len(g:config_table))
+        let config = g:config_table[i]
         let plugin = config[0]
         if g:load_flags[i] && plugin != ""
             let plugin_ext = ""
@@ -231,7 +232,6 @@ function! LoadPlugin()
                 let plug_install = 1
             endif
         endif
-        let i = i + 1
     endfor
     call plug#end()
     if plug_install == 1
@@ -240,35 +240,31 @@ function! LoadPlugin()
 endfunction
 
 function! LoadConfig()
-    let i = 0
-    for config in g:config_table
+    for i in range(len(g:config_table))
+        let config = g:config_table[i]
         let plugin_config = ""
         if len(config) > 1
             let plugin_config = config[1]
         endif
         if g:load_flags[i] && plugin_config != ""
-            execute "runtime "..plugin_config
+            if filereadable(g:home_dir..'/.config/nvim/'..plugin_config)
+                execute "runtime "..plugin_config
+            elseif filereadable(g:home_dir..'/.vimrc_user/'..plugin_config)
+                execute "runtime "..g:home_dir..'/.vimrc_user/'..plugin_config
+            else
+                echoerr "can't found config "..plugin_config.."!"
+            endif
         endif
-        let i = i + 1
     endfor
 endfunction
 
-function! LoadUserConfig()
-    let user_config = g:home_dir..'/.vimrc_user'
+function! LoadUserConfig(rcfile)
+    let user_config = g:home_dir..'/.vimrc_user/'..a:rcfile
     if filereadable(user_config)
         execute 'source ' .. user_config
     endif
 endfunction
 
-function! EmptyFunc()
-endfunction
-
-let g:DefaultCheckdepsFunc =function('CheckDeps')
-let g:DefaultInstallVimFunc =function('InstallVim')
-
-let g:BeforeLoadPluginsFunc =function('EmptyFunc')
-let g:BeforeLoadConfigFunc =function('EmptyFunc')
-let g:FinallyFunc =function('EmptyFunc')
 
 function! SetBeforeGetLoadPluginsFunc(func_name)
     let g:BeforeLoadPluginsFunc = function(a:func_name)
@@ -286,15 +282,14 @@ function! AddQuickStartItem(desc, cmd)
     let g:quick_start_config = add(g:quick_start_config, [a:desc, a:cmd])
 endfunction
 
-call LoadUserConfig()
-if g:DefaultCheckdepsFunc() == 1
+if CheckDeps() == 1
     if g:install_vim == 1
-        call g:DefaultInstallVimFunc()
+        call InstallVim()
     endif
     call GetLoadFlags()
-    call g:BeforeLoadPluginsFunc()
+    call LoadUserConfig('before_all.vim')
     call LoadPlugin()
-    call g:BeforeLoadConfigFunc()
+    call LoadUserConfig('before_config.vim')
     call LoadConfig()
-    call g:FinallyFunc()
+    call LoadUserConfig('after_all.vim')
 endif

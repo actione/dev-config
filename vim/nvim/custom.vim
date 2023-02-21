@@ -5,19 +5,61 @@ function! RepairVimScript()
     %s/^\s*EOF/EOF/g
 endfunction
 
+function! BackgroundBuffer()
+    let buffers = range(1, bufnr('$'))
+    return filter(buffers, 'buflisted(v:val) && index(tabpagebuflist(tabpagenr()),v:val) == -1') " 所有buffer
+endfunction
+
+function! CleanBuffer()
+    let bufs = BackgroundBuffer()
+    for buf in bufs
+        let name = bufname(buf)
+        echom match(name, "\\[.*\\]")
+        if match(name, "\\[.*\\]") != -1 || match(name, "__.*__") != -1
+            execute "bd "..buf
+        endif
+    endfor
+endfunction
+
+
+function! CloseBackgroundBuffer()
+    let bufs = BackgroundBuffer()
+    for b in bufs
+        execute "bd "..b
+    endfor
+endfunction
+
+function! LoadProjectConfig()
+    let pwd = getcwd()
+    while pwd != "/"
+        let project_config_file = pwd.."/.config.vim"
+        if filereadable(project_config_file)
+            execute "runtime "..project_config_file
+            break
+        endif
+        let pwd = fnamemodify(pwd, ":h")
+    endwhile
+endfunction
+
+function! HandleTermEnter()
+    startinsert
+    set nonu
+    set norelativenumber
+endfunction
+
+function! HandleSessionLoadPost()
+    call CloseBackgroundBuffer()
+    call LoadProjectConfig()
+endfunction
+
 augroup autoRunGroup
     autocmd!
     autocmd BufLeave * stopinsert
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
     " autocmd BufEnter * :set nomodifiable
-augroup END
-
-augroup enterterm
-autocmd!
-autocmd TermEnter * :startinsert
-autocmd TermEnter * :set nonu
-autocmd TermEnter * :set norelativenumber
+    autocmd TermEnter * :call HandleTermEnter()
+    autocmd SessionLoadPost * :call HandleSessionLoadPost()
 augroup END
 
 set nobackup
@@ -59,9 +101,9 @@ set foldlevel=99
 set undofile
 
 if exists("g:neovide")
-    set guifont=SauceCodePro\ Nerd\ Font\ Mono:h10:w10:b:i
+    set guifont=FiraCode\ NFM:h10:w10:b:i
     let g:neovide_scale_factor = 1.0
-    let g:neovide_transparency = 0.8
+    let g:neovide_transparency = 0.5
     let g:neovide_hide_mouse_when_typing = v:true
     let g:neovide_fullscreen = v:true
     let g:neovide_cursor_vfx_mode = "railgun"

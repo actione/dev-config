@@ -45,10 +45,10 @@ require('telescope').setup {
       --  * 'safari'
       --  * 'vivaldi'
       --  * 'waterfox'
-      selected_browser = 'vivaldi',
+      selected_browser = 'edge',
 
       -- Either provide a shell command to open the URL
-      url_open_command = 'vivaldi-stable',
+      url_open_command = 'microsoft-edge-dev',
 
       -- Or provide the plugin name which is already installed
       -- Available: 'vim_external', 'open_browser'
@@ -79,7 +79,7 @@ require('telescope').setup {
         command_center.component.KEYS,
       },
       auto_replace_desc_with_cmd = false,
-    }
+    },
   }
 }
 -- To get fzf loaded and working with telescope, you need to call
@@ -94,33 +94,40 @@ require('telescope').load_extension('git_diffs')
 require('telescope').load_extension('coc')
 require('telescope').load_extension('adjacent')
 
-
 EOF
 
 
+nnoremap <silent><leader>s :SearchSession<CR>
+nnoremap <silent>``` :Telescope<CR>
+nnoremap <silent><leader>s :SearchSession<CR>
+nnoremap <silent><leader>co :Telescope colorscheme<cr>
+nnoremap <silent><leader>rg :Telescope grep_string<cr>
+nnoremap <silent><leader>m :Telescope marks<cr>
+nnoremap <silent><leader>k :Telescope keymaps<cr>
+nnoremap <silent><leader>H :Telescope help_tags<cr>
+nnoremap <silent><leader>t :Telescope current_buffer_tags<cr>
+nnoremap <silent><leader>T :Telescope tags<cr>
+nnoremap <silent><leader>ff :Telescope find_files<CR>
+nnoremap <silent><leader>f :Telescope git_files<CR>
+nnoremap <silent><leader>gs :Telescope git_status<CR>
+nnoremap <silent><leader>b :Telescope buffers<CR>
+nnoremap <silent><leader>l :Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent><leader>h :Telescope oldfiles<CR>
+nnoremap <silent><leader>: :Telescope command_history<CR>
+nnoremap <silent><leader>/ :Telescope search_history<CR>
+nnoremap <silent><leader>gc :Telescope git_bcommits<CR>
+nnoremap <silent><leader>gC :Telescope git_commits<CR>
+nnoremap <silent><leader>x :Telescope commands<CR>
+nnoremap <silent><leader>E :Telescope file_browser<CR>
+nnoremap <silent><leader>gd :Telescope git_diffs diff_commits<CR>
+nnoremap <silent><leader>C :Telescope coc<CR>
+nnoremap <silent><leader>fa :Telescope adjacent<CR>
+nnoremap <silent><leader>B :Telescope bookmarks<CR>
 
-nnoremap ``` :Telescope<CR>
-nnoremap ``s :SearchSession<CR>
-nnoremap ``co :Telescope colorscheme<cr>
-nnoremap ``rg :Telescope grep_string<cr>
-nnoremap ``m :Telescope marks<cr>
-nnoremap ``k :Telescope keymaps<cr>
-nnoremap ``H :Telescope help_tags<cr>
-nnoremap ``t :Telescope current_buffer_tags<cr>
-nnoremap ``T :Telescope tags<cr>
-nnoremap ``ff :Telescope find_files<CR>
-nnoremap ``f :Telescope git_files<CR>
-nnoremap ``gs :Telescope git_status<CR>
-nnoremap ``b :Telescope buffers<CR>
-nnoremap ``l :Telescope current_buffer_fuzzy_find<CR>
-nnoremap ``h :Telescope oldfiles<CR>
-nnoremap ``: :Telescope command_history<CR>
-nnoremap ``/ :Telescope search_history<CR>
-nnoremap ``gc :Telescope git_bcommits<CR>
-nnoremap ``gC :Telescope git_commits<CR>
-nnoremap ``x :Telescope commands<CR>
-nnoremap ``E :Telescope file_browser<CR>
-nnoremap ``gd :Telescope git_diffs diff_commits<CR>
-nnoremap ``C :Telescope coc<CR>
-nnoremap ``fa :Telescope adjacent<CR>
-nnoremap ``B :Telescope bookmarks<CR>
+function! StartSession(timer)
+    lua require("session-lens").search_session()
+endfunction
+
+if argc() == 0
+    call timer_start(2000, "StartSession")
+endif

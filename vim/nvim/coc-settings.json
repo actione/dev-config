@@ -2,7 +2,7 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "inlayHint.enable": false,
-    "go.checkForUpdates": "false",
+    "go.checkForUpdates": "disabled",
     "suggest.autoTrigger": "always",
     "suggest.noselect": false,
     "suggest.timeout": 5000,
@@ -33,7 +33,6 @@
     },
     "coc.preferences.extensionUpdateCheck": "never",
     "explorer.focus": true,
-    "explorer.previewAction.onHover": "labeling",
     "Lua.telemetry.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
     "markdown-preview-enhanced.previewTheme": "vue.css"
