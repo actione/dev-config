@@ -11,7 +11,8 @@ set -x PATH $PATH /opt/android-sdk/tools
 set --universal FZF_DEFAULT_COMMAND 'fd'
 
 set PATH $PATH /usr/local/cuda/bin
-set LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/cuda/lib64 /usr/lib/x86_64-linux-gnu
+# set LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/cuda/lib64 /usr/lib/x86_64-linux-gnu
+set LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/cuda/targets/x86_64-linux/lib
 set GPGPU_COMPILER_EXPORT /home/huaweil/compiler_a/x86_64_Linux_release
 
 set P4USER huaweil
