@@ -34,7 +34,7 @@ function! LoadProjectConfig()
     while pwd != "/"
         let project_config_file = pwd.."/.config.vim"
         if filereadable(project_config_file)
-            execute "runtime "..project_config_file
+            execute "source "..project_config_file
             break
         endif
         let pwd = fnamemodify(pwd, ":h")
@@ -57,6 +57,7 @@ augroup autoRunGroup
     autocmd BufLeave * stopinsert
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber
+    autocmd InsertLeave * :call system('fcitx-remote -c')
     " autocmd BufEnter * :set nomodifiable
     autocmd TermEnter * :call HandleTermEnter()
     autocmd SessionLoadPost * :call HandleSessionLoadPost()
@@ -88,6 +89,8 @@ set rulerformat=%15(%c%V\ %p%%%)
 set smartindent
 set autoindent
 set clipboard=unnamedplus
+set scrolloff=999
+
 
 set enc=utf-8
 let &termencoding=&encoding

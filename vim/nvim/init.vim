@@ -18,6 +18,8 @@ let g:deps_check = [
             \ ['nodejs', 'node --version'],
             \ ['xsel', 'xsel --version'],
             \ ['npm', 'npm --version'],
+            \ ['python3', 'python3 --version'],
+            \ ['pip3', 'pip3 --version'],
             \ ]
 
 
@@ -135,6 +137,7 @@ let g:config_table = [
             \ [ 'Pocco81/auto-save.nvim', 'auto-save.vim'],
             \ [ 'ludovicchabant/vim-gutentags', 'ctags.vim'],
             \ [ 'puremourning/vimspector', 'vimspector.vim'],
+            \ [ 'skyfireitdiy/chatgpt', 'chatgpt.vim'],
             \ [ 'preservim/nerdcommenter', 'nerdcommenter.vim'],
             \ [ 'neoclide/coc.nvim', 'coc.vim', [], "{'branch': 'master', 'do': 'npm install --registry '..g:npm_registry..' --frozen-lockfile'}"],
             \ [ 'nvim-lua/plenary.nvim'],
@@ -263,19 +266,6 @@ function! LoadUserConfig(rcfile)
     if filereadable(user_config)
         execute 'source ' .. user_config
     endif
-endfunction
-
-
-function! SetBeforeGetLoadPluginsFunc(func_name)
-    let g:BeforeLoadPluginsFunc = function(a:func_name)
-endfunction
-
-function! SetBeforeGetLoadConfigFunc(func_name)
-    let g:BeforeLoadConfigFunc = function(a:func_name)
-endfunction
-
-function! SetFinallyFunc(func_name)
-    let g:FinallyFunc = function(a:func_name)
 endfunction
 
 function! AddQuickStartItem(desc, cmd)

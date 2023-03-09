@@ -101,7 +101,7 @@ nnoremap <silent><leader>s :SearchSession<CR>
 nnoremap <silent>``` :Telescope<CR>
 nnoremap <silent><leader>s :SearchSession<CR>
 nnoremap <silent><leader>co :Telescope colorscheme<cr>
-nnoremap <silent><leader>rg :Telescope grep_string<cr>
+nnoremap <silent><leader>rg :Telescope live_grep<cr>
 nnoremap <silent><leader>m :Telescope marks<cr>
 nnoremap <silent><leader>k :Telescope keymaps<cr>
 nnoremap <silent><leader>H :Telescope help_tags<cr>
@@ -123,11 +123,5 @@ nnoremap <silent><leader>gd :Telescope git_diffs diff_commits<CR>
 nnoremap <silent><leader>C :Telescope coc<CR>
 nnoremap <silent><leader>fa :Telescope adjacent<CR>
 nnoremap <silent><leader>B :Telescope bookmarks<CR>
-
-function! StartSession(timer)
-    lua require("session-lens").search_session()
-endfunction
-
-if argc() == 0
-    call timer_start(2000, "StartSession")
-endif
+nnoremap <silent><leader>j :Telescope jumplist<CR>
+nnoremap <silent><leader>G :Telescope grep_string<CR>
