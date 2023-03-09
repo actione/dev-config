@@ -83,6 +83,23 @@
                     }
                 }
             }
+        },
+        "python_file": {
+            "adapter": "debugpy",
+            "default": true,
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/filename.py",
+                "cwd": "${workspaceRoot}",
+                "stopOnEntry": true
+            },
+            "breakpoints": {
+                "exception": {
+                    "raised": "N",
+                    "uncaught": "",
+                    "userUnhandled": ""
+                }
+            }
         }
     }
 }

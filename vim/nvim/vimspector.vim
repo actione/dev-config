@@ -16,7 +16,7 @@ function! StartDebug()
     endif
 endfunction
 
-
+let g:vimspector_enable_mappings = 'HUMAN'
 
 nmap <silent><nowait><leader>dn <Plug>VimspectorStepOver
 nmap <A-n> <Plug>VimspectorStepOver
