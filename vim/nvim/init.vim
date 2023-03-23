@@ -29,6 +29,21 @@ if g:install_vim == 1
     let g:light_vim = 0
 endif
 
+" ssh 远程针贴板
+if executable('clipboard-provider')
+    let g:clipboard = {
+          \ 'name': 'myClipboard',
+          \     'copy': {
+          \         '+': 'clipboard-provider copy',
+          \         '*': 'env COPY_PROVIDERS=tmux clipboard-provider copy',
+          \     },
+          \     'paste': {
+          \         '+': 'clipboard-provider paste',
+          \         '*': 'env COPY_PROVIDERS=tmux clipboard-provider paste',
+          \     },
+          \ }
+endif
+
 " 使用表驱动重构vim配置
 " 表项含义
 "       插件名称 插件配置 插件flag(nvim/vim/heavy一个或者) 插件加载配置
@@ -160,6 +175,7 @@ let g:config_table = [
             \ [ 'yaocccc/nvim-hlchunk'],
             \ [ 'lukas-reineke/indent-blankline.nvim', 'indent-blankline.vim'],
             \ [ 'akinsho/toggleterm.nvim', 'toggleterm.vim'],
+            \ [ 'nvim-telescope/telescope.nvim'],
             \ [ '', 'custom.vim' ],
             \ [ '', 'keybinding.vim'],
             \ [ '', 'colorscheme.vim' ],
