@@ -1,7 +1,19 @@
 
-nnoremap <silent><leader>cg :call chatgpt#Chat()<cr>
-nnoremap <silent><leader>cN :call chatgpt#LoadSession()<cr>
+" nnoremap <silent><leader>cg :call chatgpt#Chat()<cr>
+" nnoremap <silent><leader>cN :call chatgpt#LoadSession()<cr>
+" nnoremap <silent><leader>cD :call chatgpt#DeleteSession()<cr>
+
+
+nnoremap <silent><leader>cg :call chatgpt#OutBufChat()<cr>
+nnoremap <silent><leader>cL :call chatgpt#LoadSession()<cr>
 nnoremap <silent><leader>cD :call chatgpt#DeleteSession()<cr>
+nnoremap <silent><leader>cC :call chatgpt#CloseSession()<cr>
+nnoremap <silent><leader>cO :call chatgpt#OpenWindow()<cr>
+
+nnoremap <silent><leader>ck :call chatgpt#InBufChat("[Do not output any content other than code snippets.]")<cr>
+
+vnoremap <silent><leader>cg <ESC>:call chatgpt#OutBufChatVisual()<cr>
+vnoremap <silent><leader>ck <ESC>:call chatgpt#InBufChatVisual("[Do not output any content other than code snippets.]")<cr>
 
 call chatgpt#AddConfig('<leader>ce', 'Please explain in the following code：\n&')
 call chatgpt#AddConfig('<leader>cd', 'Is there anything wrong with the following code：\n&')
