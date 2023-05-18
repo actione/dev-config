@@ -68,31 +68,14 @@ require('telescope').setup {
 
       -- Provide debug messages
       debug = false,
-    },
-    command_center = {
-      components = {
-        command_center.component.DESC,
---        command_center.component.KEYS,
-      },
-      sort_by = {
-        command_center.component.DESC,
-        command_center.component.KEYS,
-      },
-      auto_replace_desc_with_cmd = false,
-    },
+    }
   }
 }
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('session-lens')
-require('telescope').load_extension('media_files')
-require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('command_center')
-require('telescope').load_extension('file_browser')
-require('telescope').load_extension('git_diffs')
-require('telescope').load_extension('coc')
-require('telescope').load_extension('adjacent')
 
 EOF
 
@@ -107,10 +90,10 @@ nnoremap <silent><leader>k :Telescope keymaps<cr>
 nnoremap <silent><leader>H :Telescope help_tags<cr>
 nnoremap <silent><leader>t :Telescope current_buffer_tags<cr>
 nnoremap <silent><leader>T :Telescope tags<cr>
-nnoremap <silent><leader>ff :Telescope find_files<CR>
-nnoremap <silent><leader>f :Telescope git_files<CR>
+nnoremap <silent><leader>fF :Telescope find_files<CR>
+nnoremap <silent><leader>ff :Telescope git_files<CR>
 nnoremap <silent><leader>gs :Telescope git_status<CR>
-nnoremap <silent><leader>b :Telescope buffers<CR>
+nnoremap <silent>``b :Telescope buffers<CR>
 nnoremap <silent><leader>l :Telescope current_buffer_fuzzy_find<CR>
 nnoremap <silent><leader>h :Telescope oldfiles<CR>
 nnoremap <silent><leader>: :Telescope command_history<CR>

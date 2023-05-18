@@ -1,12 +1,13 @@
 "  coc.vim config
+call system("python3 ". shellescape(expand("~/.config/nvim/coc/merge_config.py")))
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
 
-function! CheckBackspace() abort
+function! coc#CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -19,7 +20,7 @@ inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm()
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
-function! ShowDocumentation()
+function! coc#ShowDocumentation()
     if CocAction('hasProvider', 'hover')
         call CocActionAsync('doHover')
     else
@@ -70,7 +71,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> K :call ShowDocumentation()<cr>
+nnoremap <silent> K :call coc#ShowDocumentation()<cr>
 
 
 " augroup autoformat
@@ -105,6 +106,8 @@ let g:coc_global_extensions = []
 for c in g:coc_config
     let g:coc_global_extensions = add(g:coc_global_extensions, c[0])
     if len(c) > 1
-        execute "runtime coc/" .. c[1]
+        execute "runtime coc/" . c[1]
     endif
 endfor
+
+

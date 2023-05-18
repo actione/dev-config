@@ -9,7 +9,7 @@ nnoremap  <silent>``T     :Tags<cr>
 nnoremap <silent>``ff     :Files<CR>
 nnoremap <silent>``f      :GFiles<CR>
 nnoremap <silent>``gs     :GFiles?<CR>
-nnoremap <silent>``b      :Buffers<CR>
+nnoremap <silent><leader>b      :Buffers<CR>
 nnoremap <silent>``l      :BLines<CR>
 nnoremap <silent>``h      :History<CR>
 nnoremap <silent>``:      :History:<CR>

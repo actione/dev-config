@@ -1,9 +1,3 @@
-
-" nnoremap <silent><leader>cg :call chatgpt#Chat()<cr>
-" nnoremap <silent><leader>cN :call chatgpt#LoadSession()<cr>
-" nnoremap <silent><leader>cD :call chatgpt#DeleteSession()<cr>
-
-
 nnoremap <silent><leader>cg :call chatgpt#OutBufChat()<cr>
 nnoremap <silent><leader>cL :call chatgpt#LoadSession()<cr>
 nnoremap <silent><leader>cD :call chatgpt#DeleteSession()<cr>
@@ -27,3 +21,12 @@ call chatgpt#AddConfig('<leader>ciw', 'please help me improve writing for the fo
 call chatgpt#AddConfig('<leader>cf', 'please help me fix spelling and grammar for the following context: \n&')
 call chatgpt#AddConfig('<leader>cte', '请将下面内容翻译为英文并优化写作: \n&')
 call chatgpt#AddConfig('<leader>ctc', '请将下面内容翻译为中文: \n&')
+nnoremap <silent><leader>cT :call chatgpt#TruncSession()<cr>
+
+
+nnoremap <silent><leader>ck :call chatgpt#InBufChat("\n[Do not output any content other than code snippets.]")<cr>
+
+vnoremap <silent><leader>cg <ESC>:call chatgpt#OutBufChatVisual()<cr>
+vnoremap <silent><leader>ck <ESC>:call chatgpt#InBufChatVisual("\n[Do not output any content other than code snippets.]")<cr>
+
+

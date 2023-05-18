@@ -1,56 +1,72 @@
 
 " 自动格式化会将EOF缩进，这样就有问题了，此处将缩进去除
-function! RepairVimScript()
+function! custom#RepairVimScript()
     %s/^\s*lua << EOF/lua << EOF/g
     %s/^\s*EOF/EOF/g
 endfunction
 
-function! BackgroundBuffer()
+function! custom#BackgroundBuffer()
     let buffers = range(1, bufnr('$'))
     return filter(buffers, 'buflisted(v:val) && index(tabpagebuflist(tabpagenr()),v:val) == -1') " 所有buffer
 endfunction
 
-function! CleanBuffer()
-    let bufs = BackgroundBuffer()
+function! custom#CleanBuffer()
+    let bufs = range(1, bufnr('$'))
     for buf in bufs
         let name = bufname(buf)
-        echom match(name, "\\[.*\\]")
         if match(name, "\\[.*\\]") != -1 || match(name, "__.*__") != -1
-            execute "bd "..buf
+            execute "bd! ".buf
         endif
     endfor
 endfunction
 
 
-function! CloseBackgroundBuffer()
-    let bufs = BackgroundBuffer()
-    for b in bufs
-        execute "bd "..b
+function! custom#CloseBackgroundSpecBuffer()
+    let bufs = custom#BackgroundBuffer()
+    for buf in bufs
+        let name = bufname(buf)
+        if match(name, "\\[.*\\]") != -1 || match(name, "__.*__") != -1
+            execute "bd! ".buf
+        endif
     endfor
 endfunction
 
-function! LoadProjectConfig()
+function! custom#CloseBackgroundBuffer()
+    let bufs = custom#BackgroundBuffer()
+    for buf in bufs
+        execute "bd! ".buf
+    endfor
+endfunction
+
+function! custom#LoadProjectConfig()
     let pwd = getcwd()
     while pwd != "/"
-        let project_config_file = pwd.."/.config.vim"
+        let project_config_file = pwd."/.config.vim"
         if filereadable(project_config_file)
-            execute "source "..project_config_file
+            execute "source ".project_config_file
             break
         endif
         let pwd = fnamemodify(pwd, ":h")
     endwhile
 endfunction
 
-function! HandleTermEnter()
+function! custom#HandleTermEnter()
     startinsert
     set nonu
     set norelativenumber
 endfunction
 
-function! HandleSessionLoadPost()
-    call CloseBackgroundBuffer()
-    call LoadProjectConfig()
+function! custom#HandleSessionLoadPost()
+    call custom#CloseBackgroundSpecBuffer()
+    call custom#LoadProjectConfig()
 endfunction
+
+function! custom#RefreshAllBuffer()
+    call custom#CloseBackgroundBuffer()
+    bufdo e!
+endfunction
+
+command! -nargs=0 R :call custom#RefreshAllBuffer()
 
 augroup autoRunGroup
     autocmd!
@@ -59,8 +75,8 @@ augroup autoRunGroup
     autocmd InsertLeave * :set relativenumber
     autocmd InsertLeave * :call system('fcitx-remote -c')
     " autocmd BufEnter * :set nomodifiable
-    autocmd TermEnter * :call HandleTermEnter()
-    autocmd SessionLoadPost * :call HandleSessionLoadPost()
+    autocmd TermEnter * :call custom#HandleTermEnter()
+    autocmd SessionLoadPost * :call custom#HandleSessionLoadPost()
 augroup END
 
 set nobackup
@@ -68,6 +84,7 @@ set nowritebackup
 set updatetime=300
 set signcolumn=yes
 set showcmd
+set noshowmode
 set nu
 set autoread
 set autowriteall
@@ -89,7 +106,7 @@ set rulerformat=%15(%c%V\ %p%%%)
 set smartindent
 set autoindent
 set clipboard=unnamedplus
-set scrolloff=999
+set scrolloff=10
 
 
 set enc=utf-8
@@ -104,7 +121,7 @@ set foldlevel=99
 set undofile
 
 if exists("g:neovide")
-    set guifont=FiraCode\ NFM:h10:w10:b:i
+    set guifont=FiraCode\ NFM:h8:w8:b:i
     let g:neovide_scale_factor = 1.0
     let g:neovide_transparency = 0.5
     let g:neovide_hide_mouse_when_typing = v:true
