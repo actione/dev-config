@@ -84,7 +84,6 @@ let g:config_table = [
             \ ['调试支持', 'puremourning/vimspector', 'vimspector.vim'],
             \ ['chatgpt', 'skyfireitdiy/chatgpt', 'chatgpt.vim'],
             \ ['codegeex', 'skyfireitdiy/codegeex-vim', 'codegeex.vim'],
-            \ ['codeium', 'Exafunction/codeium.vim'],
             \ ['cheat.sh', 'dbeniamine/cheat.sh-vim'],
             \ ['注释', 'preservim/nerdcommenter', 'nerdcommenter.vim'],
             \ ['coc', 'neoclide/coc.nvim', 'coc.vim', [], "{'branch': 'master', 'do': 'npm install --registry '.g:npm_registry.' --frozen-lockfile'}"],

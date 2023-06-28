@@ -42,4 +42,5 @@ endfunction
 
 command! -nargs=0 RC :call colorscheme#RandomColor()
 
-colorscheme earlysummer
+"colorscheme earlysummer
+colorscheme solarized
