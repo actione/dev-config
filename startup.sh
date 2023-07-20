@@ -36,23 +36,15 @@ install_normal_app() {
     sudo systemctl enable vmware-usbarbitrator
 }
 
-config(){
+config_fish(){
     chsh -s /usr/bin/fish
     sudo chsh -s /usr/bin/fish
+}
+
+
+config(){
     ./install.sh fish tmux x vim konsole kitty alacritty hx i3 polybar
-    git remote set-url origin git@github.com:skyfireitdiy/dotfile.git
-    git config --global core.editor nvim
-    git config --global user.email skyfireitdiy@hotmail.com
-    git config --global user.name skyfire
-    git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-    git config --global alias.br branch
-    git config --global alias.bra branch -a
-    git config --global alias.co checkout
-    git config --global alias.mg merge
-    git config --global alias.cp cherry-pick
-    git config --global alias.rb rebase
-    git config --global pull.rebase true
-    git config --global core.editor vim
+    config_fish
 }
 
 install_all(){

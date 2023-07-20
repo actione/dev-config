@@ -20,7 +20,7 @@ function autoformat#ToggleAutoFormat()
     endif
 endfunction
 
-command! AutoFormatToggle :call autoformat#ToggleAutoFormat()
+command! AFT :call autoformat#ToggleAutoFormat()
 
 noremap ff :Autoformat<CR>
 "augroup autoformat

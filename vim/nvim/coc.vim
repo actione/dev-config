@@ -100,13 +100,24 @@ let g:coc_config = [
             \ ['coc-cl'],
             \ ['coc-json'],
             \ ]
+
+for ext in g:coc_ext_table
+    let g:coc_config = add(g:coc_config, ext)
+endfor
+
 "  coc extensions
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = []
 for c in g:coc_config
     let g:coc_global_extensions = add(g:coc_global_extensions, c[0])
     if len(c) > 1
-        execute "runtime coc/" . c[1]
+        if filereadable(g:home_dir.'/.config/nvim/coc/'.c[1])
+            execute "source ".g:home_dir.'/.config/nvim/coc/'.c[1]
+        elseif filereadable(g:home_dir.'/.vimrc_user/coc/'.c[1])
+            execute "source ".g:home_dir.'/.vimrc_user/coc/'.c[1]
+        else
+            echoerr "can't find config ".c[1]
+        endif
     endif
 endfor
 
