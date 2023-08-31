@@ -84,6 +84,13 @@
       ">>": "gitUnstage"
     },
     "inlayHint.enable": false,
+    "inlayHint.display": true,
+    "inlayHint.subSeparator": " ☯ ",
+    "inlayHint.typeSeparator": " ❤ ",
+    "inlayHint.enableParameter": true,
+    "inlayHint.parameterSeparator": " ✪ ",
+    "inlayHint.refreshOnInsertMode": true,
+
     "go.checkForUpdates": "disabled",
     "suggest.autoTrigger": "always",
     "suggest.noselect": false,
@@ -96,6 +103,7 @@
         "border": true,
         "highlight": "CocFloating",
         "borderhighlight": "CocFloating",
+        "title": "♥",
         "rounded": true
     },
     "diagnostic.floatConfig": {
@@ -103,6 +111,7 @@
         "borderhighlight": "CocFloating",
         "highlight": "CocFloating",
         "focusable": true,
+        "title": "☠",
         "rounded": true
     },
     "hover.floatConfig": {
@@ -110,7 +119,7 @@
         "borderhighlight": "CocFloating",
         "highlight": "CocFloating",
         "focusable": true,
-        "title": "🎈",
+        "title": "✪",
         "rounded": true
     },
     "coc.preferences.extensionUpdateCheck": "never",

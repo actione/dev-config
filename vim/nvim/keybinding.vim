@@ -1,9 +1,9 @@
 
-inoremap hh <ESC>
-inoremap jj <ESC>
-inoremap kk <ESC>
-inoremap oo <ESC>o
-inoremap OO <ESC>O
+" inoremap hh <ESC>
+" inoremap jj <ESC>
+" inoremap kk <ESC>
+" inoremap oo <ESC>o
+" inoremap OO <ESC>O
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
@@ -29,7 +29,7 @@ nnoremap <leader>zo 99zr
 nnoremap // *
 nnoremap ?? #
 nnoremap <leader>% ggvG
-nnoremap <leader>r "9yiw:%s/<C-r>9//g<Left><Left><C-r>9
+" nnoremap <leader>r "9yiw:%s/<C-r>9//g<Left><Left><C-r>9
 nnoremap <leader>R "9yiw:%s/\<<C-r>9\>//g<Left><Left><C-r>9
 nnoremap <leader>M :set nomodifiable!<cr>
 " nnoremap <C-a> ^

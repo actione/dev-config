@@ -1,5 +1,5 @@
 nnoremap  <silent><leader>co    :Colors<cr>
-nnoremap  <silent><leader>rg    :Rg<cr>
+nnoremap  <silent><leader>r     :Rg<cr>
 nnoremap  <silent><leader>m     :Marks<cr>
 nnoremap  <silent><leader>k     :Maps<cr>
 nnoremap  <silent><leader>H     :Helptags<cr>
