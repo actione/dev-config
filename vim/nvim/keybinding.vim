@@ -63,7 +63,7 @@ nnoremap <A-Up> <C-w>k
 nnoremap <A-Right> <C-w>l
 nnoremap <C-]> g<C-]>
 nnoremap <C-c> yiw
-nnoremap <C-v> viwP
+" nnoremap <C-v> viwP
 nnoremap <leader>y yiw
 nnoremap <leader>p viwP
 
