@@ -1,6 +1,6 @@
 
 " inoremap hh <ESC>
-" inoremap jj <ESC>
+inoremap jj <ESC>
 " inoremap kk <ESC>
 " inoremap oo <ESC>o
 " inoremap OO <ESC>O
