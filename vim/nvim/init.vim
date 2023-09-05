@@ -125,6 +125,7 @@ call init#AddPlugin( ['缩进线', 'lukas-reineke/indent-blankline.nvim', 'inden
 call init#AddPlugin( ['浮动终端', 'akinsho/toggleterm.nvim', 'toggleterm.vim'])
 call init#AddPlugin( ['lsp增强', 'jose-elias-alvarez/null-ls.nvim', 'null-ls.vim'])
 call init#AddPlugin( ['gcov 代码覆盖率支持', 'actione/vim-gcover', 'gcover.vim'])
+call init#AddPlugin( ['copilot', 'github/copilot.vim', 'copilot.vim'])
 call init#AddPlugin( ['主题', 'tomasr/molokai' ])
 call init#AddPlugin( ['主题', 'dracula/vim'])
 call init#AddPlugin( ['主题', 'sjl/badwolf' ])
