@@ -80,25 +80,9 @@ nnoremap <silent> K :call coc#ShowDocumentation()<cr>
 " augroup END
 
 " coc 插件配置表项  coc插件名  插件配置（可选）
-let g:coc_config = [
-            \ ["coc-clangd", 'clangd.vim'],
-            \ ['coc-go'],
-            \ ['coc-jedi'],
-            \ ['coc-vimlsp'],
-            \ ['coc-marketplace'],
-            \ ['coc-rust-analyzer'],
-            \ ['coc-markdownlint'],
-            \ ['coc-webview'],
-            \ ['coc-sumneko-lua'],
-            \ ['coc-explorer', 'explorer.vim'],
-            \ ['coc-tabnine'],
-            \ ['coc-clang-format-style-options'],
-            \ ['coc-yaml'],
-            \ ['coc-snippets'],
-            \ ['coc-cmake'],
-            \ ['coc-cl'],
-            \ ['coc-json'],
-            \ ]
+let g:coc_config = []
+
+call init#AddCoc( ['coc-explorer', 'explorer.vim'])
 
 for ext in g:coc_ext_table
     let g:coc_config = add(g:coc_config, ext)
@@ -110,10 +94,10 @@ let g:coc_global_extensions = []
 for c in g:coc_config
     let g:coc_global_extensions = add(g:coc_global_extensions, c[0])
     if len(c) > 1
-        if filereadable(g:home_dir.'/.config/nvim/coc/'.c[1])
-            execute "source ".g:home_dir.'/.config/nvim/coc/'.c[1]
-        elseif filereadable(g:home_dir.'/.vimrc_user/coc/'.c[1])
+        if filereadable(g:home_dir.'/.vimrc_user/coc/'.c[1])
             execute "source ".g:home_dir.'/.vimrc_user/coc/'.c[1]
+        elseif filereadable(g:home_dir.'/.config/nvim/coc/'.c[1])
+            execute "source ".g:home_dir.'/.config/nvim/coc/'.c[1]
         else
             echoerr "can't find config ".c[1]
         endif

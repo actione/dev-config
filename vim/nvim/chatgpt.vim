@@ -22,7 +22,7 @@ call chatgpt#AddConfig('<leader>cf', 'please help me fix spelling and grammar fo
 call chatgpt#AddConfig('<leader>cte', '请将下面内容翻译为英文并优化写作: \n&')
 call chatgpt#AddConfig('<leader>ctc', '请将下面内容翻译为中文: \n&')
 nnoremap <silent><leader>cT :call chatgpt#TruncSession()<cr>
-
+nnoremap <silent><leader>cS :call chatgpt#SetConfigIndex()<cr>
 
 nnoremap <silent><leader>ck :call chatgpt#InBufChat("\n[Do not output any content other than code snippets.]")<cr>
 
