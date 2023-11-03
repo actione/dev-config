@@ -1,4 +1,6 @@
 let g:auto_format_flag = 1
+let g:formatdef_shfmt = '"shfmt -s -i ".(&expandtab ? shiftwidth() : "0")'
+let g:formatters_sh = ['shfmt']
 
 function autoformat#RunAutoFormat()
     if g:auto_format_flag == 1
