@@ -27,4 +27,3 @@ nnoremap <silent><leader>ck :call chatgpt#InBufChat("\n[Do not output any conten
 vnoremap <silent><leader>cg <ESC>:call chatgpt#OutBufChatVisual()<cr>
 vnoremap <silent><leader>ck <ESC>:call chatgpt#InBufChatVisual("\n[Do not output any content other than code snippets.]")<cr>
 
-
