@@ -63,7 +63,7 @@ if executable('clipboard-provider')
           \     },
           \     'paste': {
           \         '+': 'clipboard-provider paste',
-          \         '*': 'env COPY_PROVIDERS=tmux clipboard-provider paste',
+          \         '*': 'env PASTE_PROVIDERS=tmux clipboard-provider paste',
           \     },
           \ }
 endif
