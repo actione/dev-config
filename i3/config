@@ -33,7 +33,7 @@ font pango:monospace 15
 
 # start a terminal. We use kitty.
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec kitty
 # bindsym $mod+Return exec kitty
 
 # kill focused window
@@ -57,7 +57,7 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -show run -theme Monokai -icon-th
 # configure the bar.
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always --no-startup-id fcitx
+exec_always --no-startup-id ibus-daemon
 
 # Display Wallpaper, always.
 exec_always feh --bg-fill --no-fehbg --randomize ~/.config/i3/wallpaper
@@ -95,6 +95,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # We use this. System dark theme is applied to it.
 exec --no-startup-id nm-applet
+
+exec --no-startup-id clash
+
+exec --no-startup-id blueman-applet
+
+exec --no-startup-id pasystray
 
 # Use pactl to adjust volume in PulseAudio.
 # These are examples if you would like to use pactl. We will not use this,

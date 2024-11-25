@@ -63,7 +63,7 @@ config_fish(){
 
 config_tmux(){
     bak_config ~/.tmux
-    git clone https://ghproxy.com/https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     replace_config ~/.tmux.conf $(pwd)/_tmux.conf
     echo tmux配置成功！
 }
@@ -110,6 +110,38 @@ config_ranger() {
     echo "ranger 配置完成"
 }
 
+config_pacman() {
+    replace_config /etc/pacman.d $(pwd)/pacman/pacman.d
+    replace_config /etc/pacman.conf $(pwd)/pacman/pacman.conf
+    echo "pacman 配置完成"
+}
+
+config_conda() {
+    replace_config ~/.condarc $(pwd)/_condarc
+    echo "conda 配置完成"
+}
+
+config_pip() {
+    replace_config ~/.config/pip $(pwd)/pip
+    echo "pip 配置完成"
+}
+
+config_zellij () {
+    replace_config ~/.config/zellij $(pwd)/zellij
+    echo "zellij 配置完成"
+}
+
+
+config_ssh () {
+    mkdir -p ~/.ssh
+    replace_config ~/.ssh/config $(pwd)/ssh/config
+    echo "ssh 配置完成"
+}
+
+config_pypi() {
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    echo "pypi 配置完成"
+}
 
 
 while test $# -gt 0

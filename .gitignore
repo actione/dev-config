@@ -2,3 +2,7 @@ __pycache__
 tags
 .tags
 coc-settings.json
+*.gpg
+*~
+fish/conf.d
+gnupg

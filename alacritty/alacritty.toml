@@ -1,0 +1,47 @@
+import = ["/home/skyfire/.config/alacritty/alacritty-colorscheme/themes/darcula.toml"]
+live_config_reload = true
+# tabspaces = 4
+
+[font]
+size = 13
+
+[font.bold]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold italic"
+
+[font.italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold italic"
+
+[font.normal]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold"
+
+[scrolling]
+# auto_scroll = true
+# faux_multiplier = 100
+history = 2000
+multiplier = 20
+
+[shell]
+args = ["-l"]
+program = "fish"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+opacity = 1.0
+startup_mode = "Maximized"
+# startup_mode = "Normal"
+
+[window.dimensions]
+columns = 120
+lines = 60
+
+[window.padding]
+x = 0
+y = 0

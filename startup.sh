@@ -1,7 +1,7 @@
 #!/bin/bash
 
 add_sudoer() {
-    user = $(whoami)
+    user=$(whoami)
     sudo bash -c "cat>>/etc/sudoers<<EOF
     $user ALL=(ALL:ALL) NOPASSWD: ALL
 EOF
@@ -9,37 +9,54 @@ EOF
 }
 
 add_source() {
-    sudo bash -c 'cat>>/etc/pacman.conf<<EOF
-[archlinuxcn]
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch
-SigLevel = Never
-EOF
-'
-    sudo sed 's/SigLevel\s*=.*/SigLevel = Never/g' -i /etc/pacman.conf
+    sudo ./install.sh pacman
 }
 
 install_must_app() {
-    sudo pacman -Sy
-    sudo pacman -S --noconfirm archlinuxcn-keyring yay fakeroot
+    add_source
+    sudo pacman -S --noconfirm archlinuxcn-keyring yay fakeroot debugedit
 }
 
-update() {
-    yay -Su
+update_system() {
+    add_source
+    sudo pacman -Sy
+    sudo pacman -Su --noconfirm
 }
 
 install_normal_app() {
-    yay -S --noconfirm fish neovim fzf ranger w3m make  lazygit tmux  konsole fcitx-im  fcitx-configtool fcitx-sogoupinyin  ripgrep universal-ctags gcc nodejs xsel npm  go rustup fd linux-headers flameshot  p7zip wget aria2 unzip python-pynvim  wqy-zenhei wqy-microhei-lite wqy-microhei  wqy-bitmapfont nerd-fonts-complete  ueberzug ffmpegthumbnailer poppler epub-thumbnailer-git  clash net-tools wechat-uos reflector python-pip yarn witch python-jedi
+    sudo ./install.sh pacman
+    yay -S --noconfirm fish neovim fzf ranger w3m make  lazygit tmux  ripgrep universal-ctags gcc nodejs xsel npm  go rustup fd linux-headers p7zip wget aria2 unzip python-pynvim  ueberzug ffmpegthumbnailer poppler epub-thumbnailer-git net-tools reflector python-pip yarn witch python-jedi zellij exa docker docker-compose
 }
+
+install_gui_app() {
+    yay -S --noconfirm ibus ibus-libpinyin flameshot wqy-zenhei wqy-microhei-lite wqy-microhei  wqy-bitmapfont nerd-fonts-complete debugedit microsoft-edge-stable-bin bluez bluez-utils blueman pulseaudio-bluetooth pavucontrol obs-studio pasystray bat
+}
+
 
 config_fish(){
     chsh -s /usr/bin/fish
     sudo chsh -s /usr/bin/fish
 }
 
+config_bluez(){
+    sudo systemctl enable bluetooth
+}
+
+config_ntp() {
+    sudo timedatectl set-timezone Asia/Shanghai
+    sudo timedatectl set-ntp true
+}
+
+config_docker() {
+    sudo usermod -aG docker $(whoami)
+}
 
 config(){
-    ./install.sh fish tmux x vim konsole kitty alacritty hx i3 polybar
+    ./install.sh fish tmux x vim konsole kitty alacritty hx i3 polybar pypi ranger
     config_fish
+    config_bluez
+    config_ntp
+    config_docker
 }
 
 
@@ -47,8 +64,8 @@ config(){
 install_all(){
     add_sudoer
     add_source
+    update_system
     install_must_app
-    update
     install_normal_app
     config
 }
